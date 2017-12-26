@@ -23,9 +23,8 @@ class EditUserViewController : UIViewController, UIPickerViewDelegate , UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.text = data?.name
-        ageTextField.text = "\((data?.age)!)"
+        ageTextField.text = "\(data?.age ?? 0)"
         genderTextField.text = data?.gender
-        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -37,7 +36,7 @@ class EditUserViewController : UIViewController, UIPickerViewDelegate , UIPicker
             return DataService.shared.cities.count
         }else{
            DataService.shared.selectedCity = DataService.shared.cities[pickerView.selectedRow(inComponent: 0)]
-            return (DataService.shared.districtsAtSelectedCity?.count)!
+            return DataService.shared.districtsAtSelectedCity?.count ?? 0
         }
     }
     
@@ -55,19 +54,20 @@ class EditUserViewController : UIViewController, UIPickerViewDelegate , UIPicker
         let selectedDistrict = pickerView.selectedRow(inComponent: 1)
         
         city  = DataService.shared.cities[selectedCity].name
-        dist = DataService.shared.districtsAtSelectedCity![selectedDistrict].name
+        dist = DataService.shared.districtsAtSelectedCity?[selectedDistrict].name
         
-        cityLabel.text = "City: \(city!) \n  District: \(dist!) "
+        cityLabel.text = "City: \(city ?? "Hà Nội") \n  District: \(dist ?? "Ba Đình") "
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         guard let button = sender as? UIBarButtonItem , button == saveButton else {return}
+        guard let age = Int16(ageTextField.text ?? "") else {return}
         
         data?.name = nameTextField.text
-        data?.age = Int16(ageTextField.text!)!
+        data?.age = age
         data?.gender = genderTextField.text
-        data?.city = city
-        data?.district = dist
+        data?.city = city ?? data?.city
+        data?.district = dist ?? data?.district
     }
 }

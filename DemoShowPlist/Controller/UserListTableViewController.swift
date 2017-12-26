@@ -48,11 +48,7 @@ class UserListTableViewController : UITableViewController {
         if let svc = segue.source as? EditUserViewController{
             if let data = svc.data, let index = tableView.indexPathForSelectedRow?.row {
                 userToShow[index] = data
-                do {
-                    try AppDelegate.shared.persistentContainer.viewContext.save()
-                } catch let error as NSError {
-                    print("Error While Deleting Note: \(error.userInfo)")
-                }
+                AppDelegate.shared.saveContext()
                 tableView.reloadData()
             }
         }
@@ -61,11 +57,7 @@ class UserListTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             AppDelegate.shared.persistentContainer.viewContext.delete(userToShow[indexPath.row])
-            do {
-                try AppDelegate.shared.persistentContainer.viewContext.save()
-            } catch let error as NSError {
-                print("Error While Deleting Note: \(error.userInfo)")
-            }
+            AppDelegate.shared.saveContext()
             userToShow.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

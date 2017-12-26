@@ -69,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67030FBC1FF1DBA900F46774 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6729F3EC1FD255A700E70EC6 /* UserListCell.swift */,
+				6734BBD71FCBB78F0060EA55 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6729F3E51FD24E3200E70EC6 /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +116,7 @@
 				6734BBEE1FCBBDB00060EA55 /* Service */,
 				6734BBE91FCBB7D10060EA55 /* Model */,
 				6734BBE71FCBB7BA0060EA55 /* Controller */,
-				6734BBD71FCBB78F0060EA55 /* Main.storyboard */,
+				67030FBC1FF1DBA900F46774 /* View */,
 				6734BBDA1FCBB78F0060EA55 /* Assets.xcassets */,
 				6734BBDC1FCBB78F0060EA55 /* LaunchScreen.storyboard */,
 				6734BBDF1FCBB78F0060EA55 /* Info.plist */,
@@ -124,7 +133,6 @@
 				6729F3E51FD24E3200E70EC6 /* Register */,
 				67F781851FD107920093BA01 /* UserListTableViewController.swift */,
 				67F4335E1FD530A000A7DF0C /* EditUserViewController.swift */,
-				6729F3EC1FD255A700E70EC6 /* UserListCell.swift */,
 				6729F3E81FD24F0C00E70EC6 /* ContainerViewController .swift */,
 			);
 			path = Controller;

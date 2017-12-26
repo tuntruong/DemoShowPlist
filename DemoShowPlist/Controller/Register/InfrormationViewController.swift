@@ -30,7 +30,7 @@ class InformationViewController : UIViewController {
     }
     
     @IBAction func register(_ sender: Any) {
-        save(name: nameLabel.text! , age: Int16(ageLabel.text!)!, gender: genderLabel.text!, city: cityLabel.text!, district: districtLabel.text!)
+        save(name: nameLabel.text ?? "" , age: Int16(ageLabel.text ?? "") ?? 0, gender: genderLabel.text ?? "", city: cityLabel.text ?? "", district: districtLabel.text ?? "")
         navigationController?.popToRootViewController(animated: true)
     }
     

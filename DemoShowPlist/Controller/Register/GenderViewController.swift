@@ -17,7 +17,6 @@ class GenderViewController : UIViewController {
     @IBAction func radioButton(_ sender: UIButton) {
         genderButtons.forEach{$0.isSelected = false}
         sender.isSelected = true
-        let index = getIndexOfGenderButton(btn: sender)
         guard let gender = sender.currentTitle else {return}
         UserDefaults.standard.set(gender, forKey: "gender")
     }

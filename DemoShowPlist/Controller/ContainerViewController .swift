@@ -12,9 +12,9 @@ class ContrainerViewController : UIViewController{
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
-    var menuShowing = false {
+    var isMenuShowing = false {
         didSet{
-            if menuShowing{
+            if isMenuShowing{
                 leadingConstraint.constant = 0
             } else {
                 leadingConstraint.constant = -menuView.frame.width
@@ -25,12 +25,16 @@ class ContrainerViewController : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuShowing = false
-        
         NotificationCenter.default.addObserver(self,selector: #selector(showMenu(notification:)),name: NSNotification.Name(rawValue: "myNotifiKey"),object: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        isMenuShowing = false
+
+    }
+    
     @objc func showMenu(notification: Notification){
-        menuShowing = !menuShowing
+        isMenuShowing = !isMenuShowing
     }
 }
